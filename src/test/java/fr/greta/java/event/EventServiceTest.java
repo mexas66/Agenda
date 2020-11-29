@@ -36,5 +36,18 @@ public class EventServiceTest {
         inOrder.verify(wrapper).fromEntity(entity);
     }
 
+    @Test
+    public void serviceCreateGoesWrongWithInvalidEvent() {
+        Event event = mock(Event.class);
+        EventEntity entity = mock(EventEntity.class);
 
+        when(event.isValid()).thenReturn(false);
+
+        try {
+            service.create(event);
+        } catch (ServiceException e) {
+        }
+
+        verify(wrapper, never()).toEntity(any());
+    }
 }
