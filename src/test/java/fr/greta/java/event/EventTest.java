@@ -8,7 +8,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class EventServiceTest {
+public class EventTest {
     EventService service = new EventService();
 
     @Test
@@ -17,5 +17,13 @@ public class EventServiceTest {
         event.setBeginCalendar(service.toCalendar("29-11-2020T11:30"));
         event.setEndCalendar(service.toCalendar("29-11-2020T12:30"));
         assertTrue(event.isValid());
+    }
+
+    @Test
+    public void eventIsNotValidWithEndBeforeBeginning() throws ServiceException {
+        Event event = new Event();
+        event.setBeginCalendar(service.toCalendar("29-11-2020T12:30"));
+        event.setEndCalendar(service.toCalendar("29-11-2020T11:30"));
+        assertFalse(event.isValid());
     }
 }
