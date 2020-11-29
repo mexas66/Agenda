@@ -31,3 +31,4 @@ public class EventTest {
         assertFalse(event.isValid());
 
     }
+}
