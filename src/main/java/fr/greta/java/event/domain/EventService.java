@@ -14,9 +14,18 @@ import java.util.List;
 
 public class EventService {
 
-    EventRepository repository = new EventRepository();
-    EventWrapper wrapper = new EventWrapper();
+    EventRepository repository;
+    EventWrapper wrapper;
 
+    public EventService(EventRepository repository, EventWrapper wrapper) {
+        this.repository = repository;
+        this.wrapper = wrapper;
+    }
+
+    public EventService() {
+        repository = new EventRepository();
+        wrapper = new EventWrapper();
+    }
 
     public Calendar toCalendar(String strDate) throws ServiceException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -33,10 +42,10 @@ public class EventService {
 
     }
 
-    public void create(Event event) throws ServiceException {
+    public Event create(Event event) throws ServiceException {
         if(event.isValid()) {
             try {
-                repository.create(wrapper.toEntity(event));
+                return wrapper.fromEntity(repository.create(wrapper.toEntity(event)));
             } catch (RepositoryException e) {
                 throw new ServiceException(e);
             }
