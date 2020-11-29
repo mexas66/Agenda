@@ -2,6 +2,8 @@ package fr.greta.java.event;
 
 import fr.greta.java.event.domain.Event;
 import fr.greta.java.event.domain.EventService;
+import fr.greta.java.event.facade.EventDTOWrapper;
+import fr.greta.java.event.facade.EventDTO;
 import fr.greta.java.generic.exception.ServiceException;
 import org.junit.Test;
 
@@ -10,6 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 public class EventTest {
     EventService service = new EventService();
+
+    EventDTOWrapper dtoWrapper = new EventDTOWrapper();
 
     @Test
     public void eventIsValid() throws ServiceException {
@@ -25,5 +29,5 @@ public class EventTest {
         event.setBeginCalendar(service.toCalendar("29-11-2020T12:30"));
         event.setEndCalendar(service.toCalendar("29-11-2020T11:30"));
         assertFalse(event.isValid());
+
     }
-}

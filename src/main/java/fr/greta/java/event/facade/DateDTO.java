@@ -7,6 +7,7 @@ public class DateDTO {
 
     private int hour;
     private int minute;
+    private String ampm;
 
     public int getDay() {
         return day;
@@ -46,5 +47,13 @@ public class DateDTO {
 
     public void setMinute(int minute) {
         this.minute = minute;
+    }
+
+    public String getAmpm() {
+        return ampm;
+    }
+
+    public void setAmpm(String ampm) {
+        this.ampm = ampm;
     }
 }

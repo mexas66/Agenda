@@ -39,7 +39,6 @@ public class EventServiceTest {
     @Test
     public void serviceCreateGoesWrongWithInvalidEvent() {
         Event event = mock(Event.class);
-        EventEntity entity = mock(EventEntity.class);
 
         when(event.isValid()).thenReturn(false);
 

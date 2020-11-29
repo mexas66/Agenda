@@ -38,7 +38,11 @@ public class EventDTOWrapper {
         dto.setYear(calendar.get(Calendar.YEAR));
         dto.setHour(calendar.get(Calendar.HOUR));
         dto.setMinute(calendar.get(Calendar.MINUTE));
-
+        if(calendar.get(Calendar.AM_PM)==0) {
+            dto.setAmpm("AM");
+        }else {
+            dto.setAmpm("PM");
+        }
         return dto;
     }
 }
